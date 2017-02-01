@@ -34,7 +34,7 @@ void URMove::setup(){
     }
     
     selectedSolution = -1;
-    deltaTimer.setSmoothing(false);
+    deltaTimer.setSmoothing(0.99);
     distance = 0;
     acceleration.assign(6, 0.0);
     lastJointSpeeds.assign(6, 0.0);
