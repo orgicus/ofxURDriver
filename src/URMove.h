@@ -9,7 +9,7 @@
 
 #pragma once
 #include "ofMain.h"
-#include "UR5KinematicModel.h"
+#include "URKinematicModel.h"
 #include "ur_kin.h"
 #include "ofxTiming.h"
 #include "Synchronized.h"
@@ -49,7 +49,7 @@ protected:
     
     float distance;
     int selectSolution();
-    vector<UR5KinematicModel*> previews;
+    vector<URKinematicModel*> previews;
     //Motion Capture Visualization
     
     URKinematics kinematics;

@@ -6,11 +6,17 @@
 // Copyright (c) 2016, Daniel Moore, Madaline Gannon, and The Frank-Ratchye STUDIO for Creative Inquiry All rights reserved.
 //
 
-#include "UR5KinematicModel.h"
-void UR5KinematicModel::setup(){
+#include "URKinematicModel.h"
+
+URKinematicModel::URKinematicModel(){
     
-    cout << "UR10KinematicModel::setup()" << endl;
+}
+URKinematicModel::~URKinematicModel(){
     
+}
+void URKinematicModel::setup(){
+    
+    cout << "URKinematicModel::setup()" << endl;
 //    world.setup();
 //    world.disableGrabbing();
 //    world.setGravity( ofVec3f(0, 0, 0) );
@@ -114,4 +120,84 @@ void UR5KinematicModel::setup(){
     jointsRaw.swapBack();
     toolPointRaw.swapBack();
     
+}
+
+ofQuaternion URKinematicModel::getToolPointQuaternion(){
+    return nodes[5].getGlobalTransformMatrix().getRotate();
+}
+
+ofNode URKinematicModel::getTool(){
+    return tcpNode;
+}
+
+void URKinematicModel::setToolOffset(ofVec3f localOffset){
+    tcpNode.setPosition(localOffset);
+}
+
+void URKinematicModel::setToolMesh(ofMesh mesh){
+    toolMesh = mesh;
+}
+void URKinematicModel::update(){
+
+//    	world.update();
+}
+void URKinematicModel::draw(float stage){
+    
+    ofDrawAxis(1000);
+    ofEnableDepthTest();
+    ofSetColor(255, 255, 0);
+    ofDrawSphere(tool.position*ofVec3f(1000, 1000, 1000), 4);
+    ofSetColor(255, 0, 255);
+    ofDisableDepthTest();
+    
+    
+    if(bDrawModel){
+        ofEnableDepthTest();
+        shader.begin();
+        float x;
+        ofVec3f axis;
+        ofQuaternion q;
+        ofVec3f offset;
+        ofPushMatrix();
+        {
+            for(int i = 0; i < joints.size(); i++)
+            {
+                float x;
+                ofVec3f axis;
+                q = joints[i].rotation;
+                q.getRotate(x, axis);
+                ofTranslate(joints[i].offset*1000);
+                ofDrawAxis(10);
+                if(i >= 3){
+                    ofPushMatrix();
+                    ofRotateZ(-180);
+                    ofRotateX(-180);
+                    ofScale(100, 100, 100);
+                    meshs[i].draw();
+                    ofPopMatrix();
+                }
+                ofRotate(x, axis.x, axis.y, axis.z);
+                if(i < 3){
+                    ofPushMatrix();
+                    ofRotateZ(-180);
+                    ofRotateX(-180);
+                    ofScale(100, 100, 100);
+                    meshs[i].draw();
+                    ofPopMatrix();
+                }
+            }
+            toolMesh.draw();
+        }
+        ofPopMatrix();
+        
+        shader.end();
+        ofDisableDepthTest();
+        
+        ofPushMatrix();
+        for(int i = 0; i < nodes.size(); i++){
+            nodes[i].draw();
+        }
+        tcpNode.draw();
+        ofPopMatrix();
+    }
 }

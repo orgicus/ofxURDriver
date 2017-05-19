@@ -6,10 +6,10 @@
 // Copyright (c) 2016, Daniel Moore, Madaline Gannon, and The Frank-Ratchye STUDIO for Creative Inquiry All rights reserved.
 //
 
-#include "UR5KinematicModel.h"
-void UR5KinematicModel::setup(){
+#include "UR3KinematicModel.h"
+void UR3KinematicModel::setup(){
     
-    cout << "UR10KinematicModel::setup()" << endl;
+    cout << "UR3KinematicModel::setup()" << endl;
     
 //    world.setup();
 //    world.disableGrabbing();

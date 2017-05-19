@@ -29,7 +29,7 @@ void URMove::setup(){
     
     
     for(int i = 0; i < 8; i++){
-        previews.push_back(new UR5KinematicModel());
+        previews.push_back(new URKinematicModel());
         previews.back()->setup();
     }
     

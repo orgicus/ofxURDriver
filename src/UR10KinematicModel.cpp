@@ -6,8 +6,9 @@
 // Copyright (c) 2016, Daniel Moore, Madaline Gannon, and The Frank-Ratchye STUDIO for Creative Inquiry All rights reserved.
 //
 
-#include "UR5KinematicModel.h"
-void UR5KinematicModel::setup(){
+#include "UR10KinematicModel.h"
+
+void UR10KinematicModel::setup(){
     
     cout << "UR10KinematicModel::setup()" << endl;
     

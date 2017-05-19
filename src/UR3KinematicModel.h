@@ -13,7 +13,7 @@
 #include "URKinematicModel.h"
 //#include "ofxBullet.h"
 
-class UR5KinematicModel  : public URKinematicModel{
+class UR3KinematicModel  : public URKinematicModel{
 public:
     void setup();
 };

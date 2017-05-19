@@ -9,7 +9,10 @@
 #pragma once
 #include "ofMain.h"
 #include "ur_driver.h"
+#include "URKinematicModel.h"
+#include "UR3KinematicModel.h"
 #include "UR5KinematicModel.h"
+#include "UR10KinematicModel.h"
 #include "ofxTiming.h"
 
 class ofxURDriver : public ofThread{
@@ -51,7 +54,7 @@ public:
     std::thread* ros_control_thread_;
     vector<double> currentSpeed;
     double acceleration;
-    UR5KinematicModel model;
+    URKinematicModel model;
     RateTimer timer;
     float epslion = 0.00000000000000001;
     
