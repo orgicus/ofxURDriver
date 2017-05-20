@@ -17,9 +17,9 @@ ofxURDriver::ofxURDriver(){
 ofxURDriver::~ofxURDriver(){
     
 }
-void ofxURDriver::setup(string ipAddress, double minPayload, double maxPayload){
+void ofxURDriver::setup(string ipAddress, double minPayload, double maxPayload,RobotType m){
     robot = new UrDriver(rt_msg_cond_,
-                         msg_cond_, ipAddress);
+                         msg_cond_, ipAddress,m);
     
     char buf[256];
     vector<string> foo = robot->getJointNames();
@@ -43,7 +43,7 @@ void ofxURDriver::setup(string ipAddress, double minPayload, double maxPayload){
     sprintf(buf, "Bounds for set_payload service calls: [%f, %f]",
             min_payload, max_payload);
     ofLog(OF_LOG_NOTICE)<<buf;
-    model.setup();
+    model.setup(m);
     bStarted = false;
 }
 void ofxURDriver::start(){

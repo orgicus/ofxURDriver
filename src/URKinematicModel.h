@@ -12,6 +12,12 @@
 #include "Synchronized.h"
 //#include "ofxBullet.h"
 
+enum RobotType{
+    UR3,
+    UR5,
+    UR10
+};
+
 struct Joint{
     ofVec3f offset;
     ofVec3f axis;
@@ -24,6 +30,10 @@ public:
     URKinematicModel();
     ~URKinematicModel();
     void setup();
+    void setupUR3();
+    void setupUR5();
+    void setupUR10();
+    void setup(RobotType m);
     void update();
     void draw(float stage = 3.0);
     void setToolMesh(ofMesh mesh);
@@ -62,5 +72,8 @@ public:
 //    
 //    vector<ofxBulletCustomShape*>	phyMesh;
 //    vector<ofxBulletJoint*>		phyJoints;
+    
+//private:
+    RobotType type;
     
 };

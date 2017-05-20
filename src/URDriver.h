@@ -10,16 +10,13 @@
 #include "ofMain.h"
 #include "ur_driver.h"
 #include "URKinematicModel.h"
-#include "UR3KinematicModel.h"
-#include "UR5KinematicModel.h"
-#include "UR10KinematicModel.h"
 #include "ofxTiming.h"
 
 class ofxURDriver : public ofThread{
 public:
     ofxURDriver();
     ~ofxURDriver();
-    void setup(string ipAddress, double minPayload = 0.0, double maxPayload = 1.0);
+    void setup(string ipAddress, double minPayload = 0.0, double maxPayload = 1.0,RobotType m=UR5);
     void start();
     void disconnect();
     void stopThread();

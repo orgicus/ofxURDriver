@@ -17,7 +17,7 @@ class URMove {
 public:
     URMove();
     ~URMove();
-    void setup();
+    void setup(RobotType m=UR5);
     void update();
     void draw(int i);
     void computeVelocities();

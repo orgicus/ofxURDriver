@@ -13,7 +13,7 @@ URMove::URMove(){
 URMove::~URMove(){
     
 }
-void URMove::setup(){
+void URMove::setup(RobotType m){
     float min = FLT_MIN;
     float max = FLT_MAX;
     movementParams.setName("UR Movements");
@@ -30,7 +30,7 @@ void URMove::setup(){
     
     for(int i = 0; i < 8; i++){
         previews.push_back(new URKinematicModel());
-        previews.back()->setup();
+        previews.back()->setup(m);
     }
     
     selectedSolution = -1;
